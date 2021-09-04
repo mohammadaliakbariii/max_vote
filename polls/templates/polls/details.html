@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>question</title>
+</head>
+<body>
+{% if  error_massage %}
+    {{ error_massage }}
+{% endif %}
+<h1>{{ question.question_text|upper|linebreaks|safe }}</h1>
+<small>created in {{ question.date_time|date }}</small>
+<h5>number of choices are {{ question.choice_set.all|length }}</h5>
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+<input type="submit" value="vote">
+</form>
+
+<p>now  is {% now "jS F Y H:i" %}</p>
+
+<button ><a href="{% url 'polls:index' %}">home</a></button>
+
+</body>
+</html>

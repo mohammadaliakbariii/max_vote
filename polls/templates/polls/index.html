@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if Questions %}
+    <ul>
+    {% for question in Questions %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>not question yet</p>
+{% endif %}
+
+
+</body>
+</html>
