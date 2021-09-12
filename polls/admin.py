@@ -15,3 +15,7 @@ class QuestionAdmin(admin.ModelAdmin):
      search_fields = ["question_text"]
      inlines = (ChoiceInline,)
 
+@admin.register(Choice)
+class ChoiceAdmin(admin.ModelAdmin):
+     list_display = ["vote","choice_text"]
+
